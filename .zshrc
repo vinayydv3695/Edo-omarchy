@@ -65,7 +65,7 @@ alias ls='eza -1   --icons=auto' # short list
 alias ll='eza -lha --icons=auto --sort=name --group-directories-first' # long list all
 alias ld='eza -lhD --icons=auto' # long list dirs
 alias mkdir='mkdir -p'
-# aliao ssh='kitten ssh'
+alias ssh='kitten ssh'
 alias tree='tree -a -I .git'
 alias cat='bat'
 alias c='clear' # clear terminal

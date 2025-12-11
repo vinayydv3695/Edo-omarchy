@@ -1,8 +1,8 @@
 [init]
 	defaultBranch = main
 [user]
-	email = vasujain275@gmail.com
-	name = vasujain275
+	email =  vinayydv343@gmail.com
+	name =   vinayydv3695
 [pull]
 	rebase = true
 [filter "lfs"]
