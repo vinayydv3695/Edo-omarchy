@@ -1,5 +1,6 @@
 {
   "$schema": "https://opencode.ai/config.json",
+  "plugin": ["opencode-zed-ai"],
   "provider": {
     "ollama": {
       "npm": "@ai-sdk/openai-compatible",
@@ -8,6 +9,33 @@
       },
       "models": {
         "sam860/qwen3:4b": {}
+      }
+    },
+    "zed-ai": {
+      "name": "Zed AI",
+      "api": "anthropic",
+      "models": {
+        "claude": {
+          "name": "Claude Sonnet 4.6 (Zed)",
+          "limit": {
+            "context": 200000,
+            "output": 64000
+          },
+          "capabilities": {
+            "temperature": true,
+            "reasoning": true,
+            "attachment": true,
+            "toolcall": true,
+            "input": {
+              "text": true,
+              "image": true,
+              "pdf": true
+            },
+            "output": {
+              "text": true
+            }
+          }
+        }
       }
     }
   }

@@ -65,7 +65,9 @@ alias ls='eza -1   --icons=auto' # short list
 alias ll='eza -lha --icons=auto --sort=name --group-directories-first' # long list all
 alias ld='eza -lhD --icons=auto' # long list dirs
 alias mkdir='mkdir -p'
+alias battery='upower -i /org/freedesktop/UPower/devices/battery_BAT1'
 alias ssh='kitten ssh'
+alias watch='watch -n 1 acpi -b'
 alias tree='tree -a -I .git'
 alias cat='bat'
 alias c='clear' # clear terminal
@@ -83,7 +85,8 @@ alias gac='git add . && git commit -m'
 alias gs='git status'
 alias gpush='git push origin'
 alias lg='lazygit'
-
+alias upscale='VK_ICD_FILENAMES=/usr/share/vulkan/icd.d/intel_icd.x86_64.json upscayl-bin -h
+'
 # Nixos Aliases
 alias rebuild='sudo nixos-rebuild switch --flake ~/rudra/.#default'
 alias recats='sudo nix flake lock --update-input nixCats && sudo nixos-rebuild switch --flake ~/rudra/.#default'
@@ -195,7 +198,7 @@ eval "$(mise activate zsh)"
 # Export Paths
 
 # pnpm
-export PNPM_HOME="/home/vasu/.local/share/pnpm"
+export PNPM_HOME="/home/zura/.local/share/pnpm"
 case ":$PATH:" in
     *":$PNPM_HOME:"*) ;;
     *) export PATH="$PNPM_HOME:$PATH" ;;
@@ -205,3 +208,9 @@ esac
 # Local Bin
 export PATH="$HOME/.local/bin:$PATH"
 
+
+export ANDROID_HOME="$HOME/Android/Sdk"
+export PATH="$PATH:$ANDROID_HOME/platform-tools:$ANDROID_HOME/cmdline-tools/latest/bin"
+
+export CHROME_EXECUTABLE=chromium
+export SSH_AUTH_SOCK="$XDG_RUNTIME_DIR/ssh-agent.socket"

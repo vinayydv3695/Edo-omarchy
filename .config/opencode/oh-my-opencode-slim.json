@@ -1,0 +1,43 @@
+{
+  "preset": "copilot",
+  "presets": {
+    "copilot": {
+      "orchestrator": {
+        "model": "github-copilot/gpt-5.3-codex",
+        "variant": "high",
+        "skills": ["*"],
+        "mcps": ["websearch", "context7"]
+      },
+      "oracle": {
+        "model": "github-copilot/gpt-5.3-codex",
+        "variant": "high",
+        "skills": [],
+        "mcps": ["context7", "grep_app"]
+      },
+      "librarian": {
+        "model": "github-copilot/gpt-5.4-mini",
+        "variant": "low",
+        "skills": [],
+        "mcps": ["websearch", "context7", "grep_app", "filesystem"]
+      },
+      "explorer": {
+        "model": "github-copilot/gpt-5.4-mini",
+        "variant": "low",
+        "skills": [],
+        "mcps": ["grep_app"]
+      },
+      "designer": {
+        "model": "github-copilot/gemini-3.1-pro-preview",
+        "variant": "medium",
+        "skills": ["agent-browser"],
+        "mcps": ["websearch"]
+      },
+      "fixer": {
+        "model": "github-copilot/gpt-5.3-codex",
+        "variant": "medium",
+        "skills": [],
+        "mcps": ["grep_app"]
+      }
+    }
+  }
+}
