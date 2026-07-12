@@ -79,6 +79,21 @@ alias t='tmux'
 alias grep='rg --color=auto'
 alias ssn='sudo shutdown now'
 alias srn='sudo reboot now'
+alias vol120='for SINK in $(pactl list short sinks | awk '{print $2}'); do
+  pactl set-sink-volume "$SINK" 120%
+done'
+alias vol150='for SINK in $(pactl list short sinks | awk '{print $2}'); do
+  pactl set-sink-volume "$SINK" 150%
+done'
+alias vol160='for SINK in $(pactl list short sinks | awk '{print $2}'); do
+  pactl set-sink-volume "$SINK" 160%
+done'
+alias vol130='for SINK in $(pactl list short sinks | awk '{print $2}'); do
+  pactl set-sink-volume "$SINK" 130%
+done'
+alias vol200='for SINK in $(pactl list short sinks | awk '{print $2}'); do
+  pactl set-sink-volume "$SINK" 200%
+done'
 
 # Git Aliases
 alias gac='git add . && git commit -m'
@@ -214,3 +229,5 @@ export PATH="$PATH:$ANDROID_HOME/platform-tools:$ANDROID_HOME/cmdline-tools/late
 
 export CHROME_EXECUTABLE=chromium
 export SSH_AUTH_SOCK="$XDG_RUNTIME_DIR/ssh-agent.socket"
+
+[[ "$TERM_PROGRAM" == "kiro" ]] && . "$(kiro --locate-shell-integration-path zsh)"
