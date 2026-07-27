@@ -1,100 +1,134 @@
-# add_newline = false
-# # A minimal left prompt
-# format = """$directory$character"""
-# # move the rest of the prompt to the right
-# right_format = """$all"""
-# command_timeout = 1000
-#
-# [character]
-# vicmd_symbol = "[N] >>>"
-# success_symbol = '[➜](bold green)'
-#
-# [directory.substitutions]
-# '~/tests/starship-custom' = 'work-project'
+# Use a newline for a cleaner look between commands
+add_newline = true
 
-[buf]
-symbol = " "
+# LOGIC: 
+# Line 1: [OS][Directory][Git Details] --- [Cmd Duration][Languages][Cloud]
+# Line 2: [Character]
+format = """
+$os\
+$directory\
+$git_branch\
+$git_status\
+$git_state\
+$fill\
+$cmd_duration\
+$golang\
+$python\
+$nodejs\
+$rust\
+$java\
+$aws\
+$docker_context\
+$kubernetes\
+$line_break\
+$sudo\
+$jobs\
+$character"""
 
-[c]
-symbol = " "
+[fill]
+symbol = " "
 
-[conda]
-symbol = " "
-
-[crystal]
-symbol = " "
-
-[dart]
-symbol = " "
+[character]
+success_symbol = '[➜](bold green) ' 
+error_symbol = '[➜](bold red) '
+vicmd_symbol = '[](bold yellow) '
 
 [directory]
+style = "bold italic cyan"
+truncation_length = 3
+truncation_symbol = "…/"
 read_only = " 󰌾"
+format = '[$path]($style)[$read_only]($read_only_style) '
 
-[docker_context]
-symbol = " "
+# --- GIT ---
 
-[elixir]
-symbol = " "
-
-[elm]
-symbol = " "
-
-[fennel]
-symbol = " "
-
-[fossil_branch]
+[git_branch]
 symbol = " "
+style = "bold magenta"
+format = 'on [$symbol$branch]($style) '
 
-# [git_branch]
-# symbol = " "
-#
-# [golang]
-# symbol = " "
+[git_status]
+style = "bold red"
+format = '([\[$all_status$ahead_behind\]]($style) )'
+stashed = "≡"
+modified = "!"
+staged = "+"
+renamed = "»"
+deleted = "✘"
 
-[guix_shell]
-symbol = " "
+[git_state]
+format = '\([$state( $progress_current/$progress_total)]($style)\) '
+style = "bright-black"
 
-[haskell]
-symbol = " "
+# --- EXECUTION INFO ---
 
-[haxe]
-symbol = " "
+[cmd_duration]
+min_time = 500
+show_milliseconds = false
+format = 'took [󱎫 $duration]($style) '
+style = "bold yellow"
 
-[hg_branch]
-symbol = " "
+[jobs]
+symbol = "󱖏 "
+number_threshold = 1
+format = '[$symbol$number]($style) '
 
-[hostname]
-ssh_symbol = " "
+[sudo]
+symbol = "󰀶 "
+disabled = false
+format = '[$symbol]($style) '
 
-[java]
-symbol = " "
+# --- LANGUAGES ---
 
-[julia]
-symbol = " "
+[golang]
+symbol = " "
+style = "bold cyan"
+format = 'via [$symbol($version )]($style)'
 
-[kotlin]
-symbol = " "
-
-[lua]
-symbol = " "
-
-[memory_usage]
-symbol = "󰍛 "
-
-[meson]
-symbol = "󰔷 "
-
-[nim]
-symbol = "󰆥 "
-
-[nix_shell]
-symbol = " "
+[python]
+symbol = " "
+style = "bold yellow"
+format = 'via [$symbol($version )]($style)'
 
 [nodejs]
 symbol = " "
+style = "bold green"
+format = 'via [$symbol($version )]($style)'
 
-[ocaml]
-symbol = " "
+[rust]
+symbol = " "
+style = "bold orange"
+format = 'via [$symbol($version )]($style)'
+
+[java]
+symbol = " "
+style = "bold red"
+format = 'via [$symbol($version )]($style)'
+
+# --- CLOUD & DEVOPS ---
+
+[aws]
+symbol = " "
+style = "bold yellow"
+# FIXED: Using literal single quotes to handle parentheses/backslashes correctly
+format = 'on [$symbol($profile )(\($region\) )]($style)'
+
+[docker_context]
+symbol = " "
+style = "bold blue"
+format = 'on [$symbol$context]($style) '
+
+[kubernetes]
+symbol = "☸ "
+disabled = false
+style = "bold blue"
+format = 'at [$symbol$context( \($namespace\))]($style) '
+
+# --- OS SYMBOLS ---
+
+[os]
+disabled = false
+style = "bold white"
 
 [os.symbols]
 Alpaquita = " "
@@ -141,54 +175,10 @@ Unknown = " "
 Void = " "
 Windows = "󰍲 "
 
-[package]
-symbol = "󰏗 "
+# --- DIRECTORY PATH SHORTCUTS ---
 
-[perl]
-symbol = " "
-
-[php]
-symbol = " "
-
-[pijul_channel]
-symbol = " "
-
-[python]
-symbol = " "
-
-[rlang]
-symbol = "󰟔 "
-
-[ruby]
-symbol = " "
-
-[rust]
-symbol = " "
-
-[scala]
-symbol = " "
-
-[swift]
-symbol = " "
-
-[zig]
-symbol = " "
-
-
-[git_branch]
-format = '[$symbol$branch(:$remote_branch)]($style)'
-
-[aws]
-format = '[$symbol(profile: "$profile" )(\(region: $region\) )]($style)'
-disabled = false
-style = 'bold blue'
-symbol = " "
-
-[golang]
-format = '[ ](bold cyan)'
-
-[kubernetes]
-symbol = '☸ '
-disabled = true
-detect_files = ['Dockerfile']
-format = '[$symbol$context( \($namespace\))]($style) '
+[directory.substitutions]
+"Documents" = "󰈙 "
+"Downloads" = "󱑢 "
+"Music" = "󰝚 "
+"Pictures" = "󰋩 "

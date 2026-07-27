@@ -231,3 +231,24 @@ export CHROME_EXECUTABLE=chromium
 export SSH_AUTH_SOCK="$XDG_RUNTIME_DIR/ssh-agent.socket"
 
 [[ "$TERM_PROGRAM" == "kiro" ]] && . "$(kiro --locate-shell-integration-path zsh)"
+# Ghostty RPC Shell Integration Hooks
+# Add the relevant block to your shell configuration file (~/.zshrc or ~/.bashrc).
+
+# --- ZSH (~/.zshrc) ---
+ghostty_rpc_preexec() {
+  __ghostty_last_cmd="$1"
+  local cwd="$PWD"
+  local ts=$(date +%s)
+  printf '{"cmd":"%s","cwd":"%s","ts":%s,"running":true}' "$__ghostty_last_cmd" "$cwd" "$ts" > /tmp/ghostty_rpc_state.json 2>/dev/null
+}
+
+ghostty_rpc_precmd() {
+  local cwd="$PWD"
+  local ts=$(date +%s)
+  local cmd="${__ghostty_last_cmd:-zsh}"
+  printf '{"cmd":"%s","cwd":"%s","ts":%s,"running":false}' "$cmd" "$cwd" "$ts" > /tmp/ghostty_rpc_state.json 2>/dev/null
+}
+
+autoload -Uz add-zsh-hook
+add-zsh-hook preexec ghostty_rpc_preexec
+add-zsh-hook precmd ghostty_rpc_precmd
