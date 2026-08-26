@@ -252,3 +252,9 @@ ghostty_rpc_precmd() {
 autoload -Uz add-zsh-hook
 add-zsh-hook preexec ghostty_rpc_preexec
 add-zsh-hook precmd ghostty_rpc_precmd
+
+# kimi-code
+export PATH="/home/zura/.kimi-code/bin:$PATH"
+
+# strix
+export PATH=/home/zura/.strix/bin:$PATH
